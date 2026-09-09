@@ -1,0 +1,15 @@
+-- Jalankan sebagai pemilik database setelah migrasi. Ganti password.
+-- Khusus Docker bridge: backend di host terhubung melalui port loopback yang dipublikasikan.
+CREATE USER 'cms_app'@'%' IDENTIFIED BY 'REPLACE_WITH_A_LONG_RANDOM_PASSWORD';
+GRANT EXECUTE ON PROCEDURE cms.sp_health TO 'cms_app'@'%';
+GRANT EXECUTE ON PROCEDURE cms.sp_user_by_email TO 'cms_app'@'%';
+GRANT EXECUTE ON PROCEDURE cms.sp_session_create TO 'cms_app'@'%';
+GRANT EXECUTE ON PROCEDURE cms.sp_session_user TO 'cms_app'@'%';
+GRANT EXECUTE ON PROCEDURE cms.sp_session_delete TO 'cms_app'@'%';
+GRANT EXECUTE ON PROCEDURE cms.sp_events_for_user TO 'cms_app'@'%';
+GRANT EXECUTE ON PROCEDURE cms.sp_event_access TO 'cms_app'@'%';
+GRANT EXECUTE ON PROCEDURE cms.sp_event_dashboard TO 'cms_app'@'%';
+GRANT EXECUTE ON PROCEDURE cms.sp_event_divisions TO 'cms_app'@'%';
+GRANT EXECUTE ON PROCEDURE cms.sp_event_members TO 'cms_app'@'%';
+GRANT EXECUTE ON PROCEDURE cms.sp_event_tasks TO 'cms_app'@'%';
+-- sp_user_create hanya untuk bootstrap admin oleh pemilik DB; tidak untuk runtime.
